@@ -39,7 +39,7 @@ export default function NuevaSesionPage() {
       if (!user) return;
       const { data } = await supabase
         .from("ejercicios")
-        .select("id, nombre, descripcion, video_url, categoria")
+        .select("id, nombre, descripcion, video_url, imagenes_url, categoria")
         .eq("pf_id", user.id)
         .order("nombre");
       setBiblioteca((data as Ejercicio[]) ?? []);

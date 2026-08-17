@@ -40,6 +40,7 @@ create table public.ejercicios (
   nombre text not null,
   descripcion text,
   video_url text,
+  imagenes_url text[],
   categoria text not null default 'otro'
     check (categoria in ('calentamiento', 'fuerza', 'campo', 'prevencion', 'otro')),
   created_at timestamptz not null default now()
@@ -359,3 +360,27 @@ create index idx_resp_jugador on public.respuestas_ejercicio (jugador_id);
 create index idx_feedback_sesion on public.feedback_sesion (sesion_id);
 create index idx_wellness_jugador_fecha on public.wellness (jugador_id, fecha desc);
 create index idx_miembros_jugador on public.miembros_equipo (jugador_id);
+
+-- ---------- STORAGE: imágenes de referencia de ejercicios ----------
+
+insert into storage.buckets (id, name, public)
+values ('ejercicios', 'ejercicios', true)
+on conflict (id) do nothing;
+
+create policy "lectura publica de imagenes de ejercicios"
+  on storage.objects for select
+  using (bucket_id = 'ejercicios');
+
+create policy "pf sube imagenes de ejercicios"
+  on storage.objects for insert to authenticated
+  with check (
+    bucket_id = 'ejercicios'
+    and exists (
+      select 1 from public.profiles p
+      where p.id = auth.uid() and p.rol = 'pf'
+    )
+  );
+
+create policy "pf borra sus imagenes de ejercicios"
+  on storage.objects for delete to authenticated
+  using (bucket_id = 'ejercicios' and owner = auth.uid());

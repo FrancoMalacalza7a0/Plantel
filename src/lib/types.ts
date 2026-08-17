@@ -15,6 +15,7 @@ export interface Ejercicio {
   nombre: string;
   descripcion: string | null;
   video_url: string | null;
+  imagenes_url: string[] | null;
   categoria: Bloque;
 }
 

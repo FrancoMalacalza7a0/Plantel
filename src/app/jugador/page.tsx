@@ -27,7 +27,7 @@ interface SesionEj {
   carga: string | null;
   duracion_min: number | null;
   notas: string | null;
-  ejercicios: { nombre: string; video_url: string | null; descripcion: string | null } | null;
+  ejercicios: { nombre: string; video_url: string | null; imagenes_url: string[] | null; descripcion: string | null } | null;
 }
 
 interface MiRespuesta {
@@ -74,7 +74,7 @@ export default function JugadorHoy() {
         supabase
           .from("sesion_ejercicios")
           .select(
-            "id, bloque, orden, series, repeticiones, carga, duracion_min, notas, ejercicios(nombre, video_url, descripcion)"
+            "id, bloque, orden, series, repeticiones, carga, duracion_min, notas, ejercicios(nombre, video_url, imagenes_url, descripcion)"
           )
           .eq("sesion_id", s.id)
           .order("orden"),
@@ -215,6 +215,7 @@ export default function JugadorHoy() {
         {ejercicios.map((e, i) => {
           const hecho = respuestas[e.id]?.completado ?? false;
           const comentarioGuardado = respuestas[e.id]?.comentario;
+          const imgs = e.ejercicios?.imagenes_url ?? [];
           return (
             <div key={e.id} className="card space-y-3">
               <div className="flex items-start justify-between gap-3">
@@ -249,6 +250,33 @@ export default function JugadorHoy() {
                   {hecho ? "Hecho ✓" : "Hecho"}
                 </button>
               </div>
+
+              {imgs.length > 0 && (
+                <div
+                  className={
+                    imgs.length === 1
+                      ? ""
+                      : imgs.length === 2
+                        ? "grid grid-cols-2 gap-2"
+                        : "grid grid-cols-3 gap-2"
+                  }
+                >
+                  {imgs.map((url, idx) => (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      key={idx}
+                      src={url}
+                      alt={`Referencia ${idx + 1}: ${e.ejercicios?.nombre ?? "ejercicio"}`}
+                      className={
+                        imgs.length === 1
+                          ? "w-full max-h-64 object-cover rounded-xl border border-ink/10"
+                          : "w-full h-32 object-cover rounded-xl border border-ink/10"
+                      }
+                      loading="lazy"
+                    />
+                  ))}
+                </div>
+              )}
 
               {e.ejercicios?.video_url && (
                 <div>
