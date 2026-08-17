@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import ExportarExcel from "@/components/ExportarExcel";
 import type { Equipo, Sesion } from "@/lib/types";
 
 interface Miembro {
@@ -62,16 +63,17 @@ export default function EquipoPage() {
         <Link href="/pf" className="text-sm text-ink/50 hover:text-ink">
           ← Equipos
         </Link>
-        <div className="flex items-start justify-between mt-1">
-          <h1 className="font-display font-black text-2xl leading-tight">
-            {equipo.nombre}
-          </h1>
+        <h1 className="font-display font-black text-2xl leading-tight mt-1">
+          {equipo.nombre}
+        </h1>
+        <div className="flex flex-wrap items-center gap-2 mt-3">
           <Link
             href={`/pf/equipos/${equipo.id}/sesiones/nueva`}
-            className="btn-primary shrink-0 ml-3"
+            className="btn-primary"
           >
             Nueva sesión
           </Link>
+          <ExportarExcel equipoId={equipo.id} nombreEquipo={equipo.nombre} />
         </div>
       </div>
 
