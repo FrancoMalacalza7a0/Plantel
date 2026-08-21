@@ -1,55 +1,35 @@
-import { createServerClient, type CookieOptions } from "@supabase/ssr";
-import { NextResponse, type NextRequest } from "next/server";
+"use client";
 
-export async function middleware(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({ request });
-
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(
-          cookiesToSet: {
-            name: string;
-            value: string;
-            options?: CookieOptions;
-          }[]
-        ) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value)
-          );
-          supabaseResponse = NextResponse.next({ request });
-          cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options)
-          );
-        },
-      },
-    }
+function youtubeId(url: string): string | null {
+  const m = url.match(
+    /(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{6,})/
   );
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  const path = request.nextUrl.pathname;
-  const rutaProtegida =
-    path.startsWith("/pf") || path.startsWith("/jugador") || path.startsWith("/unirse");
-
-  if (!user && rutaProtegida) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/login";
-    return NextResponse.redirect(url);
-  }
-
-  return supabaseResponse;
+  return m ? m[1] : null;
 }
 
-export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|manifest.json|icon-.*|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
-  ],
-};
+export default function VideoEmbed({ url }: { url: string }) {
+  const id = youtubeId(url);
+  if (!id) {
+    return (
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-grass font-semibold underline text-sm"
+      >
+        Ver video de referencia
+      </a>
+    );
+  }
+  return (
+    <div className="aspect-video w-full overflow-hidden rounded-xl border border-ink/10">
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${id}`}
+        title="Video de referencia"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        className="w-full h-full"
+      />
+    </div>
+  );
+}
