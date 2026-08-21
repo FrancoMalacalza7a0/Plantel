@@ -1,44 +1,27 @@
-import Link from "next/link";
-import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
-import SignOutButton from "@/components/SignOutButton";
-import NavLink from "@/components/NavLink";
+import type { Config } from "tailwindcss";
 
-export default async function PfLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) redirect("/login");
-
-  const { data: perfil } = await supabase
-    .from("profiles")
-    .select("rol, nombre")
-    .eq("id", user.id)
-    .single();
-  if (perfil?.rol !== "pf") redirect("/jugador");
-
-  return (
-    <div className="min-h-dvh">
-      <header className="sticky top-0 z-10 bg-chalk/90 backdrop-blur border-b border-ink/10">
-        <div className="max-w-3xl mx-auto px-4 h-14 flex items-center justify-between">
-          <Link href="/pf" className="font-display font-black tracking-wide">
-            PLANTEL
-          </Link>
-          <nav className="flex items-center gap-1.5">
-            <NavLink href="/pf" match={["/pf/equipos"]}>
-              Equipos
-            </NavLink>
-            <NavLink href="/pf/ejercicios">Ejercicios</NavLink>
-            <span className="ml-2">
-              <SignOutButton />
-            </span>
-          </nav>
-        </div>
-      </header>
-      <main className="max-w-3xl mx-auto px-4 py-6">{children}</main>
-    </div>
-  );
-}
+const config: Config = {
+  content: ["./src/**/*.{ts,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        ink: "#0C2A22",
+        grass: { DEFAULT: "#17864B", dark: "#0F6A3A" },
+        chalk: "#F4F6F3",
+        tape: "#E8B93B",
+        rpe: {
+          low: "#17864B",
+          mid: "#D9A514",
+          high: "#D97614",
+          max: "#C2402A",
+        },
+      },
+      fontFamily: {
+        display: ["Archivo", "system-ui", "sans-serif"],
+        sans: ["'Instrument Sans'", "system-ui", "sans-serif"],
+      },
+    },
+  },
+  plugins: [],
+};
+export default config;
