@@ -17,6 +17,7 @@ interface ItemSesion {
   repeticiones: string;
   carga: string;
   duracion_min: string;
+  rpe_esperado: string;
   notas: string;
 }
 
@@ -62,6 +63,7 @@ export default function NuevaSesionPage() {
         repeticiones: "",
         carga: "",
         duracion_min: "",
+        rpe_esperado: "",
         notas: "",
       },
     ]);
@@ -105,6 +107,7 @@ export default function NuevaSesionPage() {
         repeticiones: it.repeticiones.trim() || null,
         carga: it.carga.trim() || null,
         duracion_min: it.duracion_min ? Number(it.duracion_min) : null,
+        rpe_esperado: it.rpe_esperado ? Number(it.rpe_esperado) : null,
         notas: it.notas.trim() || null,
       }));
       const { error: e2 } = await supabase
@@ -227,7 +230,7 @@ export default function NuevaSesionPage() {
                 ))}
               </select>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
               <div>
                 <label className="label">Series</label>
                 <input
@@ -268,6 +271,20 @@ export default function NuevaSesionPage() {
                     actualizar(i, "duracion_min", e.target.value)
                   }
                   placeholder="15"
+                />
+              </div>
+              <div>
+                <label className="label" title="Para comparar contra el RPE real que reporten los jugadores">
+                  RPE esperado
+                </label>
+                <input
+                  className="field"
+                  inputMode="numeric"
+                  value={it.rpe_esperado}
+                  onChange={(e) =>
+                    actualizar(i, "rpe_esperado", e.target.value.replace(/[^\d.]/g, ""))
+                  }
+                  placeholder="0-10"
                 />
               </div>
             </div>

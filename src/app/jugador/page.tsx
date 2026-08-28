@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import RpePicker from "@/components/RpePicker";
 import VideoEmbed from "@/components/VideoEmbed";
 import FotosEjercicio from "@/components/FotosEjercicio";
+import WellnessCheckIn from "@/components/WellnessCheckIn";
 import { BLOQUES, type Bloque } from "@/lib/types";
 
 const NOMBRE_BLOQUE = Object.fromEntries(
@@ -172,33 +173,36 @@ export default function JugadorHoy() {
     setGuardandoRpe(false);
   };
 
-  if (cargando) return <p className="text-ink/50">Cargando…</p>;
-
-  if (!sesion) {
-    return (
-      <div className="card text-center py-12">
-        <p className="font-display font-black text-5xl text-ink/10 mb-2">—</p>
-        <p className="font-display font-bold text-lg mb-1">
-          Hoy no hay sesión publicada
-        </p>
-        <p className="text-ink/60">
-          Cuando tu PF publique el entrenamiento del día, lo vas a ver acá. Si
-          todavía no estás en un equipo,{" "}
-          <Link href="/unirse" className="text-grass font-semibold">
-            unite con el código
-          </Link>
-          .
-        </p>
-      </div>
-    );
-  }
-
   const hechos = ejercicios.filter(
     (e) => respuestas[e.id]?.completado
   ).length;
 
   return (
     <div className="space-y-5 pb-10">
+      <div className="grid gap-3 sm:grid-cols-2">
+        <WellnessCheckIn momento="manana" />
+        <WellnessCheckIn momento="noche" />
+      </div>
+
+      {cargando ? (
+        <p className="text-ink/50">Cargando…</p>
+      ) : !sesion ? (
+        <div className="card text-center py-12">
+          <p className="font-display font-black text-5xl text-ink/10 mb-2">—</p>
+          <p className="font-display font-bold text-lg mb-1">
+            Hoy no hay sesión publicada
+          </p>
+          <p className="text-ink/60">
+            Cuando tu PF publique el entrenamiento del día, lo vas a ver acá. Si
+            todavía no estás en un equipo,{" "}
+            <Link href="/unirse" className="text-grass font-semibold">
+              unite con el código
+            </Link>
+            .
+          </p>
+        </div>
+      ) : (
+      <div className="space-y-5">
       <div>
         <p className="text-sm text-ink/50">{sesion.equipos?.nombre}</p>
         <h1 className="font-display font-black text-2xl leading-tight">
@@ -346,6 +350,8 @@ export default function JugadorHoy() {
           </>
         )}
       </div>
+      </div>
+      )}
     </div>
   );
 }
