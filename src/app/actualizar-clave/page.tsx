@@ -79,7 +79,7 @@ export default function ActualizarClave() {
         {estado === "verificando" && <p className="text-ink/50">Verificando el link…</p>}
 
         {estado === "invalido" && (
-          <div className="space-y-4">
+          <div className="card space-y-4">
             <p className="text-ink/70">
               El link expiró, ya se usó, o se abrió en un navegador distinto al
               que pidió el cambio.
@@ -91,7 +91,7 @@ export default function ActualizarClave() {
         )}
 
         {(estado === "listo" || estado === "guardando") && (
-          <div className="space-y-4">
+          <div className="card space-y-4">
             <div>
               <label className="label" htmlFor="pass">Nueva contraseña</label>
               <input

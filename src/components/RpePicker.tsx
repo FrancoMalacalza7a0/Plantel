@@ -16,12 +16,12 @@ const ETIQUETAS: Record<number, string> = {
 
 function claseRpe(n: number, activo: boolean): string {
   const base =
-    "font-display font-black text-lg rounded-xl h-12 transition-colors border ";
+    "font-display font-black text-lg rounded-xl h-12 transition-all duration-150 active:scale-90 border ";
   if (!activo) return base + "border-ink/15 bg-white text-ink/60 hover:bg-ink/5";
-  if (n <= 3) return base + "border-transparent bg-rpe-low text-white";
-  if (n <= 6) return base + "border-transparent bg-rpe-mid text-white";
-  if (n <= 8) return base + "border-transparent bg-rpe-high text-white";
-  return base + "border-transparent bg-rpe-max text-white";
+  if (n <= 3) return base + "border-transparent bg-rpe-low text-white shadow-[0_2px_8px_-2px_rgba(23,134,75,0.5)]";
+  if (n <= 6) return base + "border-transparent bg-rpe-mid text-white shadow-[0_2px_8px_-2px_rgba(217,165,20,0.5)]";
+  if (n <= 8) return base + "border-transparent bg-rpe-high text-white shadow-[0_2px_8px_-2px_rgba(217,118,20,0.5)]";
+  return base + "border-transparent bg-rpe-max text-white shadow-[0_2px_8px_-2px_rgba(194,64,42,0.5)]";
 }
 
 export default function RpePicker({

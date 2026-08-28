@@ -351,7 +351,7 @@ export default function NuevaSesionPage() {
                         key={e.id}
                         type="button"
                         onClick={() => agregar(e)}
-                        className="w-full flex items-center gap-3 rounded-xl border border-ink/10 bg-white p-3 text-left hover:border-grass transition-colors"
+                        className="w-full flex items-center gap-3 rounded-xl border border-ink/10 bg-white p-3 text-left transition-all duration-150 hover:border-grass hover:shadow-[0_4px_14px_-6px_rgba(23,134,75,0.35)] active:scale-[0.99]"
                       >
                         {e.imagenes_url && e.imagenes_url.length > 0 ? (
                           <img

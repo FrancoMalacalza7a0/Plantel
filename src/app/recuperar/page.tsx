@@ -29,7 +29,7 @@ export default function Recuperar() {
           Recuperar contraseña
         </h1>
         {enviado ? (
-          <div className="space-y-4">
+          <div className="card space-y-4">
             <p className="text-ink/70">
               Si ese mail está registrado, te enviamos un link para crear una
               contraseña nueva. Revisá también la carpeta de spam.
@@ -42,7 +42,7 @@ export default function Recuperar() {
             </Link>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="card space-y-4">
             <p className="text-ink/60">
               Poné tu email y te mandamos un link para crear una nueva.
             </p>

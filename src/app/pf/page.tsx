@@ -102,7 +102,8 @@ export default function EquiposPage() {
       {cargando ? (
         <p className="text-ink/50">Cargando…</p>
       ) : equipos.length === 0 && !creando ? (
-        <div className="card text-center py-10">
+        <div className="empty-state">
+          <p className="font-display font-black text-5xl text-ink/10 mb-2">⚽</p>
           <p className="font-display font-bold text-lg mb-1">
             Todavía no armaste ningún equipo
           </p>
@@ -120,7 +121,7 @@ export default function EquiposPage() {
             <Link
               key={e.id}
               href={`/pf/equipos/${e.id}`}
-              className="card flex items-center justify-between hover:border-grass transition-colors"
+              className="card card-link flex items-center justify-between"
             >
               <div>
                 <p className="font-display font-bold text-lg leading-tight">

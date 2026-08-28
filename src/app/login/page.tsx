@@ -41,7 +41,7 @@ export default function Login() {
           Plantel
         </p>
         <h1 className="font-display font-black text-2xl mb-6">Entrar</h1>
-        <div className="space-y-4">
+        <div className="card space-y-4">
           <div>
             <label className="label" htmlFor="email">Email</label>
             <input

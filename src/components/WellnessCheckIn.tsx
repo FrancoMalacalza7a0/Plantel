@@ -41,7 +41,7 @@ const TITULO: Record<Momento, string> = {
 
 function claseValor(activo: boolean, n: number): string {
   const base =
-    "h-9 rounded-lg font-display font-black text-sm transition-colors border ";
+    "h-9 rounded-lg font-display font-black text-sm transition-all duration-150 active:scale-90 border ";
   if (!activo) return base + "border-ink/15 bg-white text-ink/40 hover:bg-ink/5";
   if (n <= 2) return base + "border-transparent bg-rpe-low text-white";
   if (n === 3) return base + "border-transparent bg-rpe-mid text-white";

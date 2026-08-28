@@ -227,7 +227,8 @@ export default function EjerciciosPage() {
       {cargando ? (
         <p className="text-ink/50">Cargando…</p>
       ) : ejercicios.length === 0 && !creando ? (
-        <div className="card text-center py-10">
+        <div className="empty-state">
+          <p className="font-display font-black text-5xl text-ink/10 mb-2">—</p>
           <p className="font-display font-bold text-lg mb-1">
             Tu biblioteca está vacía
           </p>

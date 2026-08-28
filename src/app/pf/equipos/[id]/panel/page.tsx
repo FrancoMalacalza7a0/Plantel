@@ -363,7 +363,7 @@ export default function PanelPage() {
               <Link
                 key={s.id}
                 href={`/pf/equipos/${equipoId}/sesiones/${s.id}`}
-                className="card block hover:border-grass transition-colors"
+                className="card card-link block"
               >
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5 min-w-0">

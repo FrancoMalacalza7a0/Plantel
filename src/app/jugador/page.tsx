@@ -187,7 +187,7 @@ export default function JugadorHoy() {
       {cargando ? (
         <p className="text-ink/50">Cargando…</p>
       ) : !sesion ? (
-        <div className="card text-center py-12">
+        <div className="empty-state">
           <p className="font-display font-black text-5xl text-ink/10 mb-2">—</p>
           <p className="font-display font-bold text-lg mb-1">
             Hoy no hay sesión publicada

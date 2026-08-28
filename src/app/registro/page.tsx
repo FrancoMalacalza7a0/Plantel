@@ -48,7 +48,7 @@ export default function Registro() {
           Plantel
         </p>
         <h1 className="font-display font-black text-2xl mb-6">Crear cuenta</h1>
-        <div className="space-y-4">
+        <div className="card space-y-4">
           <div>
             <span className="label">Soy</span>
             <div className="grid grid-cols-2 gap-2">
