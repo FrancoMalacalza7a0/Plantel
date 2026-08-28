@@ -13,8 +13,6 @@ export default function VideoEmbed({ url }: { url: string }) {
     return (
       <a
         href={url}
-        target="_blank"
-        rel="noopener noreferrer"
         className="text-mint font-semibold underline text-sm"
       >
         Ver video de referencia
