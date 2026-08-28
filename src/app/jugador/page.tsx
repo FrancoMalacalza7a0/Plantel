@@ -5,6 +5,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import RpePicker from "@/components/RpePicker";
 import VideoEmbed from "@/components/VideoEmbed";
+import FotosEjercicio from "@/components/FotosEjercicio";
 import { BLOQUES, type Bloque } from "@/lib/types";
 
 const NOMBRE_BLOQUE = Object.fromEntries(
@@ -251,32 +252,10 @@ export default function JugadorHoy() {
                 </button>
               </div>
 
-              {imgs.length > 0 && (
-                <div
-                  className={
-                    imgs.length === 1
-                      ? ""
-                      : imgs.length === 2
-                        ? "grid grid-cols-2 gap-2"
-                        : "grid grid-cols-3 gap-2"
-                  }
-                >
-                  {imgs.map((url, idx) => (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      key={idx}
-                      src={url}
-                      alt={`Referencia ${idx + 1}: ${e.ejercicios?.nombre ?? "ejercicio"}`}
-                      className={
-                        imgs.length === 1
-                          ? "w-full max-h-64 object-cover rounded-xl border border-ink/10"
-                          : "w-full h-32 object-cover rounded-xl border border-ink/10"
-                      }
-                      loading="lazy"
-                    />
-                  ))}
-                </div>
-              )}
+              <FotosEjercicio
+                imagenes={imgs}
+                nombre={e.ejercicios?.nombre ?? "ejercicio"}
+              />
 
               {e.ejercicios?.video_url && (
                 <div>

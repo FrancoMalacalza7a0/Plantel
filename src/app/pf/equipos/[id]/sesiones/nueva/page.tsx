@@ -6,6 +6,10 @@ import { useParams, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { BLOQUES, type Bloque, type Ejercicio } from "@/lib/types";
 
+const NOMBRE_BLOQUE = Object.fromEntries(
+  BLOQUES.map((b) => [b.valor, b.label])
+) as Record<Bloque, string>;
+
 interface ItemSesion {
   ejercicio: Ejercicio;
   bloque: Bloque;
@@ -26,7 +30,8 @@ export default function NuevaSesionPage() {
   const [notas, setNotas] = useState("");
   const [biblioteca, setBiblioteca] = useState<Ejercicio[]>([]);
   const [items, setItems] = useState<ItemSesion[]>([]);
-  const [seleccion, setSeleccion] = useState("");
+  const [mostrarPicker, setMostrarPicker] = useState(false);
+  const [filtro, setFiltro] = useState("");
   const [guardando, setGuardando] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -47,9 +52,7 @@ export default function NuevaSesionPage() {
     cargarBiblioteca();
   }, []);
 
-  const agregar = () => {
-    const ej = biblioteca.find((e) => e.id === seleccion);
-    if (!ej) return;
+  const agregar = (ej: Ejercicio) => {
     setItems([
       ...items,
       {
@@ -62,7 +65,6 @@ export default function NuevaSesionPage() {
         notas: "",
       },
     ]);
-    setSeleccion("");
   };
 
   const actualizar = (i: number, campo: keyof ItemSesion, valor: string) => {
@@ -116,6 +118,12 @@ export default function NuevaSesionPage() {
     }
     router.push(`/pf/equipos/${equipoId}/sesiones/${sesion.id}`);
   };
+
+  const bibliotecaFiltrada = biblioteca.filter((e) =>
+    e.nombre.toLowerCase().includes(filtro.toLowerCase())
+  );
+  const vecesAgregado = (id: string) =>
+    items.filter((it) => it.ejercicio.id === id).length;
 
   return (
     <div className="space-y-5">
@@ -171,53 +179,36 @@ export default function NuevaSesionPage() {
       </div>
 
       <section className="space-y-3">
-        <h2 className="font-display font-bold text-lg">Ejercicios</h2>
-
-        {biblioteca.length === 0 ? (
-          <p className="text-sm text-ink/60">
-            Tu biblioteca está vacía.{" "}
-            <Link href="/pf/ejercicios" className="text-grass font-semibold">
-              Cargá ejercicios
-            </Link>{" "}
-            y volvé a armar la sesión.
-          </p>
-        ) : (
-          <div className="flex gap-2">
-            <select
-              className="field flex-1"
-              value={seleccion}
-              onChange={(e) => setSeleccion(e.target.value)}
-              aria-label="Elegir ejercicio de la biblioteca"
-            >
-              <option value="">Elegir de la biblioteca…</option>
-              {biblioteca.map((e) => (
-                <option key={e.id} value={e.id}>
-                  {e.nombre}
-                </option>
-              ))}
-            </select>
-            <button
-              onClick={agregar}
-              disabled={!seleccion}
-              className="btn-primary shrink-0"
-            >
-              Agregar
-            </button>
-          </div>
-        )}
+        <h2 className="font-display font-bold text-lg">
+          Ejercicios de la sesión{" "}
+          {items.length > 0 && (
+            <span className="text-grass">· {items.length}</span>
+          )}
+        </h2>
 
         {items.map((it, i) => (
           <div key={i} className="card space-y-3">
-            <div className="flex items-start justify-between">
-              <p className="font-semibold">
-                <span className="font-display font-black text-grass mr-2">
-                  {i + 1}
-                </span>
-                {it.ejercicio.nombre}
-              </p>
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex items-center gap-3 min-w-0">
+                {it.ejercicio.imagenes_url &&
+                  it.ejercicio.imagenes_url.length > 0 && (
+                    <img
+                      src={it.ejercicio.imagenes_url[0]}
+                      alt=""
+                      className="w-12 h-12 rounded-lg object-cover border border-ink/10 shrink-0"
+                      loading="lazy"
+                    />
+                  )}
+                <p className="font-semibold">
+                  <span className="font-display font-black text-grass mr-2">
+                    {i + 1}
+                  </span>
+                  {it.ejercicio.nombre}
+                </p>
+              </div>
               <button
                 onClick={() => quitar(i)}
-                className="text-sm text-ink/40 hover:text-rpe-max"
+                className="text-sm text-ink/40 hover:text-rpe-max shrink-0"
               >
                 Quitar
               </button>
@@ -291,16 +282,123 @@ export default function NuevaSesionPage() {
             </div>
           </div>
         ))}
+
+        {!mostrarPicker ? (
+          <button
+            onClick={() => setMostrarPicker(true)}
+            className="btn-primary w-full text-base py-3"
+          >
+            ＋ Agregar ejercicio de la biblioteca
+          </button>
+        ) : (
+          <div className="card border-2 border-grass space-y-3">
+            <div className="flex items-center justify-between">
+              <p className="font-display font-bold">
+                Tocá un ejercicio para sumarlo
+              </p>
+              <button
+                onClick={() => setMostrarPicker(false)}
+                className="btn-ghost text-sm"
+              >
+                Listo
+              </button>
+            </div>
+
+            {biblioteca.length === 0 ? (
+              <p className="text-sm text-ink/60">
+                Tu biblioteca está vacía.{" "}
+                <Link
+                  href="/pf/ejercicios"
+                  target="_blank"
+                  className="text-grass font-semibold"
+                >
+                  Cargá ejercicios en otra pestaña
+                </Link>{" "}
+                y volvé: van a aparecer al recargar.
+              </p>
+            ) : (
+              <>
+                {biblioteca.length > 6 && (
+                  <input
+                    className="field"
+                    placeholder="Buscar ejercicio…"
+                    value={filtro}
+                    onChange={(e) => setFiltro(e.target.value)}
+                  />
+                )}
+                <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
+                  {bibliotecaFiltrada.map((e) => {
+                    const veces = vecesAgregado(e.id);
+                    return (
+                      <button
+                        key={e.id}
+                        type="button"
+                        onClick={() => agregar(e)}
+                        className="w-full flex items-center gap-3 rounded-xl border border-ink/10 bg-white p-3 text-left hover:border-grass transition-colors"
+                      >
+                        {e.imagenes_url && e.imagenes_url.length > 0 ? (
+                          <img
+                            src={e.imagenes_url[0]}
+                            alt=""
+                            className="w-12 h-12 rounded-lg object-cover border border-ink/10 shrink-0"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <span className="w-12 h-12 rounded-lg bg-ink/5 flex items-center justify-center font-display font-black text-ink/30 shrink-0">
+                            {e.nombre.charAt(0)}
+                          </span>
+                        )}
+                        <span className="flex-1 min-w-0">
+                          <span className="block font-semibold truncate">
+                            {e.nombre}
+                          </span>
+                          <span className="block text-xs text-ink/50">
+                            {NOMBRE_BLOQUE[e.categoria]}
+                          </span>
+                        </span>
+                        {veces > 0 ? (
+                          <span className="text-xs font-bold bg-grass text-white rounded-lg px-2 py-1 shrink-0">
+                            {veces} en la sesión
+                          </span>
+                        ) : (
+                          <span className="font-display font-black text-grass text-xl shrink-0">
+                            ＋
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                  {bibliotecaFiltrada.length === 0 && (
+                    <p className="text-sm text-ink/50">
+                      Ningún ejercicio coincide con «{filtro}».
+                    </p>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
+        )}
       </section>
 
       {error && <p className="text-sm text-rpe-max font-medium">{error}</p>}
-      <button
-        onClick={guardar}
-        disabled={guardando || !titulo.trim() || items.length === 0}
-        className="btn-primary w-full"
-      >
-        {guardando ? "Guardando…" : "Guardar y publicar la sesión"}
-      </button>
+      <div>
+        <button
+          onClick={guardar}
+          disabled={guardando || !titulo.trim() || items.length === 0}
+          className="btn-primary w-full"
+        >
+          {guardando ? "Guardando…" : "Guardar y publicar la sesión"}
+        </button>
+        {(!titulo.trim() || items.length === 0) && (
+          <p className="text-sm text-ink/50 text-center mt-2">
+            {!titulo.trim() && items.length === 0
+              ? "Completá el título y agregá al menos un ejercicio para publicar."
+              : !titulo.trim()
+                ? "Completá el título para publicar."
+                : "Agregá al menos un ejercicio para publicar."}
+          </p>
+        )}
+      </div>
     </div>
   );
 }

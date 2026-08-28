@@ -73,6 +73,11 @@ export default function Login() {
             {cargando ? "Entrando…" : "Entrar"}
           </button>
           <p className="text-sm text-ink/60">
+            <Link href="/recuperar" className="text-grass font-semibold">
+              ¿Te olvidaste la contraseña?
+            </Link>
+          </p>
+          <p className="text-sm text-ink/60">
             ¿Primera vez?{" "}
             <Link href="/registro" className="text-grass font-semibold">
               Creá tu cuenta
