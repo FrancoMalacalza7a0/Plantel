@@ -22,7 +22,7 @@ export default function Recuperar() {
   return (
     <main className="min-h-dvh flex items-center justify-center px-6">
       <div className="w-full max-w-sm">
-        <p className="font-display font-bold uppercase tracking-[0.25em] text-grass text-sm mb-2">
+        <p className="font-display font-bold uppercase tracking-[0.25em] text-tape text-sm mb-2">
           Plantel
         </p>
         <h1 className="font-display font-black text-2xl mb-2">
@@ -65,7 +65,7 @@ export default function Recuperar() {
               {cargando ? "Enviando…" : "Enviarme el link"}
             </button>
             <p className="text-sm text-ink/60">
-              <Link href="/login" className="text-grass font-semibold">
+              <Link href="/login" className="text-mint font-semibold">
                 ← Volver a entrar
               </Link>
             </p>

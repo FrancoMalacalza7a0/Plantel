@@ -5,15 +5,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#0C2A22",
+        // Tema oscuro: chalk es ahora el fondo (el verde tinta de siempre),
+        // ink es ahora el texto/borde claro. Swap deliberado para invertir
+        // el contraste de toda la app sin tocar cada className.
+        chalk: "#0C2A22",
+        ink: "#F4F6F3",
         grass: { DEFAULT: "#17864B", dark: "#0F6A3A" },
-        chalk: "#F4F6F3",
+        mint: "#4ED18A",
         tape: "#E8B93B",
         rpe: {
-          low: "#17864B",
-          mid: "#D9A514",
-          high: "#D97614",
-          max: "#C2402A",
+          low: "#4ED18A",
+          mid: "#E8B93B",
+          high: "#E8933B",
+          max: "#E85D4A",
         },
       },
       fontFamily: {

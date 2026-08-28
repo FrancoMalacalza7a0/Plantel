@@ -195,7 +195,7 @@ export default function JugadorHoy() {
           <p className="text-ink/60">
             Cuando tu PF publique el entrenamiento del día, lo vas a ver acá. Si
             todavía no estás en un equipo,{" "}
-            <Link href="/unirse" className="text-grass font-semibold">
+            <Link href="/unirse" className="text-mint font-semibold">
               unite con el código
             </Link>
             .
@@ -211,7 +211,7 @@ export default function JugadorHoy() {
         {sesion.notas && (
           <p className="text-sm text-ink/70 mt-1">{sesion.notas}</p>
         )}
-        <p className="text-sm font-semibold text-grass mt-2">
+        <p className="text-sm font-semibold text-mint mt-2">
           {hechos}/{ejercicios.length} ejercicios hechos
         </p>
       </div>
@@ -226,7 +226,7 @@ export default function JugadorHoy() {
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="font-semibold">
-                    <span className="font-display font-black text-grass mr-2">
+                    <span className="font-display font-black text-tape mr-2">
                       {i + 1}
                     </span>
                     {e.ejercicios?.nombre}
@@ -248,7 +248,7 @@ export default function JugadorHoy() {
                   aria-pressed={hecho}
                   className={
                     hecho
-                      ? "btn bg-grass text-white shrink-0"
+                      ? "btn bg-mint text-chalk shrink-0"
                       : "btn border border-ink/15 shrink-0"
                   }
                 >
@@ -268,7 +268,7 @@ export default function JugadorHoy() {
                   ) : (
                     <button
                       onClick={() => setVideoAbierto(e.id)}
-                      className="text-grass text-sm font-semibold"
+                      className="text-mint text-sm font-semibold"
                     >
                       ▶ Ver cómo se hace
                     </button>
@@ -313,7 +313,7 @@ export default function JugadorHoy() {
           </p>
         </div>
         {feedbackEnviado ? (
-          <p className="font-semibold text-grass">
+          <p className="font-semibold text-mint">
             ✓ Ya enviaste tu RPE de hoy. ¡Buen entrenamiento!
           </p>
         ) : (

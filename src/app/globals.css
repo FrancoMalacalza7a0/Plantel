@@ -7,20 +7,20 @@ body {
 }
 
 ::selection {
-  @apply bg-grass/20;
+  @apply bg-tape/25;
 }
 
 :focus-visible {
-  outline: 2px solid #17864b;
+  outline: 2px solid #e8b93b;
   outline-offset: 2px;
 }
 
 .card {
-  @apply bg-white rounded-2xl border border-ink/10 p-4 shadow-[0_1px_2px_rgba(12,42,34,0.04),0_10px_24px_-18px_rgba(12,42,34,0.35)];
+  @apply bg-ink/5 rounded-2xl border border-ink/15 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.3),0_10px_24px_-18px_rgba(0,0,0,0.6)];
 }
 
 .card-link {
-  @apply transition-all duration-150 hover:border-grass/60 hover:shadow-[0_6px_24px_-8px_rgba(23,134,75,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[0_1px_2px_rgba(12,42,34,0.04)];
+  @apply transition-all duration-150 hover:border-tape/50 hover:shadow-[0_6px_24px_-8px_rgba(232,185,59,0.3)] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[0_1px_2px_rgba(0,0,0,0.3)];
 }
 
 .empty-state {
@@ -32,11 +32,11 @@ body {
 }
 
 .badge-tape {
-  @apply badge bg-tape/25 text-ink;
+  @apply badge bg-tape text-chalk;
 }
 
 .badge-grass {
-  @apply badge bg-grass/15 text-grass-dark;
+  @apply badge bg-mint/15 text-mint;
 }
 
 .btn {
@@ -44,7 +44,7 @@ body {
 }
 
 .btn-primary {
-  @apply btn bg-grass text-white shadow-[0_4px_14px_-4px_rgba(23,134,75,0.55)] hover:bg-grass-dark hover:shadow-[0_6px_18px_-4px_rgba(23,134,75,0.6)];
+  @apply btn bg-tape text-chalk shadow-[0_4px_14px_-4px_rgba(232,185,59,0.4)] hover:bg-tape/90 hover:shadow-[0_6px_18px_-4px_rgba(232,185,59,0.5)];
 }
 
 .btn-ghost {
@@ -52,7 +52,7 @@ body {
 }
 
 .field {
-  @apply w-full rounded-xl border border-ink/15 bg-white px-3.5 py-2.5 text-ink placeholder:text-ink/35 transition-all duration-150 focus:border-grass focus:outline-none focus:ring-4 focus:ring-grass/15;
+  @apply w-full rounded-xl border border-ink/20 bg-ink/5 px-3.5 py-2.5 text-ink placeholder:text-ink/35 transition-all duration-150 focus:border-tape focus:outline-none focus:ring-4 focus:ring-tape/20;
 }
 
 .label {

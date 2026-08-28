@@ -189,7 +189,7 @@ export default function NuevaSesionPage() {
         <h2 className="font-display font-bold text-lg">
           Ejercicios de la sesión{" "}
           {items.length > 0 && (
-            <span className="text-grass">· {items.length}</span>
+            <span className="text-tape">· {items.length}</span>
           )}
         </h2>
 
@@ -207,7 +207,7 @@ export default function NuevaSesionPage() {
                     />
                   )}
                 <p className="font-semibold">
-                  <span className="font-display font-black text-grass mr-2">
+                  <span className="font-display font-black text-tape mr-2">
                     {i + 1}
                   </span>
                   {it.ejercicio.nombre}
@@ -312,7 +312,7 @@ export default function NuevaSesionPage() {
             ＋ Agregar ejercicio de la biblioteca
           </button>
         ) : (
-          <div className="card border-2 border-grass space-y-3">
+          <div className="card border-2 border-tape space-y-3">
             <div className="flex items-center justify-between">
               <p className="font-display font-bold">
                 Tocá un ejercicio para sumarlo
@@ -331,7 +331,7 @@ export default function NuevaSesionPage() {
                 <Link
                   href="/pf/ejercicios"
                   target="_blank"
-                  className="text-grass font-semibold"
+                  className="text-mint font-semibold"
                 >
                   Cargá ejercicios en otra pestaña
                 </Link>{" "}
@@ -355,7 +355,7 @@ export default function NuevaSesionPage() {
                         key={e.id}
                         type="button"
                         onClick={() => agregar(e)}
-                        className="w-full flex items-center gap-3 rounded-xl border border-ink/10 bg-white p-3 text-left transition-all duration-150 hover:border-grass hover:shadow-[0_4px_14px_-6px_rgba(23,134,75,0.35)] active:scale-[0.99]"
+                        className="w-full flex items-center gap-3 rounded-xl border border-ink/10 bg-ink/5 p-3 text-left transition-all duration-150 hover:border-tape hover:shadow-[0_4px_14px_-6px_rgba(232,185,59,0.3)] active:scale-[0.99]"
                       >
                         {e.imagenes_url && e.imagenes_url.length > 0 ? (
                           <img
@@ -378,11 +378,11 @@ export default function NuevaSesionPage() {
                           </span>
                         </span>
                         {veces > 0 ? (
-                          <span className="text-xs font-bold bg-grass text-white rounded-lg px-2 py-1 shrink-0">
+                          <span className="text-xs font-bold bg-tape text-chalk rounded-lg px-2 py-1 shrink-0">
                             {veces} en la sesión
                           </span>
                         ) : (
-                          <span className="font-display font-black text-grass text-xl shrink-0">
+                          <span className="font-display font-black text-tape text-xl shrink-0">
                             ＋
                           </span>
                         )}

@@ -46,7 +46,7 @@ export default function FotosEjercicio({
 
       {ampliada && (
         <div
-          className="fixed inset-0 z-50 bg-ink/90 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-4"
           onClick={() => setAmpliada(null)}
           role="dialog"
           aria-label={`Foto de ${nombre}`}

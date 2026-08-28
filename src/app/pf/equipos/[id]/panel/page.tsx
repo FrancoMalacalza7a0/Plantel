@@ -11,7 +11,7 @@ const RX_QUEJA =
 type Semaforo = "verde" | "amarillo" | "rojo" | "gris";
 
 const COLOR_DOT: Record<Semaforo, string> = {
-  verde: "bg-grass",
+  verde: "bg-mint",
   amarillo: "bg-rpe-mid",
   rojo: "bg-rpe-max",
   gris: "bg-ink/20",

@@ -37,7 +37,7 @@ export default function Login() {
   return (
     <main className="min-h-dvh flex items-center justify-center px-6">
       <div className="w-full max-w-sm">
-        <p className="font-display font-bold uppercase tracking-[0.25em] text-grass text-sm mb-2">
+        <p className="font-display font-bold uppercase tracking-[0.25em] text-tape text-sm mb-2">
           Plantel
         </p>
         <h1 className="font-display font-black text-2xl mb-6">Entrar</h1>
@@ -73,13 +73,13 @@ export default function Login() {
             {cargando ? "Entrando…" : "Entrar"}
           </button>
           <p className="text-sm text-ink/60">
-            <Link href="/recuperar" className="text-grass font-semibold">
+            <Link href="/recuperar" className="text-mint font-semibold">
               ¿Te olvidaste la contraseña?
             </Link>
           </p>
           <p className="text-sm text-ink/60">
             ¿Primera vez?{" "}
-            <Link href="/registro" className="text-grass font-semibold">
+            <Link href="/registro" className="text-mint font-semibold">
               Creá tu cuenta
             </Link>
           </p>

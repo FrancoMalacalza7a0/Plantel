@@ -69,7 +69,7 @@ export default function ActualizarClave() {
   return (
     <main className="min-h-dvh flex items-center justify-center px-6">
       <div className="w-full max-w-sm">
-        <p className="font-display font-bold uppercase tracking-[0.25em] text-grass text-sm mb-2">
+        <p className="font-display font-bold uppercase tracking-[0.25em] text-tape text-sm mb-2">
           Plantel
         </p>
         <h1 className="font-display font-black text-2xl mb-4">
@@ -127,7 +127,7 @@ export default function ActualizarClave() {
         )}
 
         {estado === "hecho" && (
-          <p className="text-grass font-semibold">✓ Listo, entrando…</p>
+          <p className="text-mint font-semibold">✓ Listo, entrando…</p>
         )}
       </div>
     </main>

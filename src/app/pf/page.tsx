@@ -133,7 +133,7 @@ export default function EquiposPage() {
                 <p className="text-[10px] uppercase tracking-widest text-ink/40 font-semibold">
                   Código
                 </p>
-                <p className="font-mono font-bold text-grass tracking-[0.2em]">
+                <p className="font-mono font-bold text-tape tracking-[0.2em]">
                   {e.codigo_invitacion}
                 </p>
               </div>

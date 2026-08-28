@@ -44,7 +44,7 @@ export default function Registro() {
   return (
     <main className="min-h-dvh flex items-center justify-center px-6 py-10">
       <div className="w-full max-w-sm">
-        <p className="font-display font-bold uppercase tracking-[0.25em] text-grass text-sm mb-2">
+        <p className="font-display font-bold uppercase tracking-[0.25em] text-tape text-sm mb-2">
           Plantel
         </p>
         <h1 className="font-display font-black text-2xl mb-6">Crear cuenta</h1>
@@ -57,7 +57,7 @@ export default function Registro() {
                 onClick={() => setRol("pf")}
                 className={
                   rol === "pf"
-                    ? "btn bg-ink text-white"
+                    ? "btn bg-tape text-chalk"
                     : "btn border border-ink/15"
                 }
               >
@@ -68,7 +68,7 @@ export default function Registro() {
                 onClick={() => setRol("jugador")}
                 className={
                   rol === "jugador"
-                    ? "btn bg-ink text-white"
+                    ? "btn bg-tape text-chalk"
                     : "btn border border-ink/15"
                 }
               >
@@ -110,7 +110,7 @@ export default function Registro() {
             />
           </div>
           {error && <p className="text-sm text-rpe-max font-medium">{error}</p>}
-          {aviso && <p className="text-sm text-grass font-medium">{aviso}</p>}
+          {aviso && <p className="text-sm text-mint font-medium">{aviso}</p>}
           <button
             onClick={crear}
             disabled={cargando || !nombre || !email || pass.length < 6}
@@ -120,7 +120,7 @@ export default function Registro() {
           </button>
           <p className="text-sm text-ink/60">
             ¿Ya tenés cuenta?{" "}
-            <Link href="/login" className="text-grass font-semibold">
+            <Link href="/login" className="text-mint font-semibold">
               Entrá
             </Link>
           </p>

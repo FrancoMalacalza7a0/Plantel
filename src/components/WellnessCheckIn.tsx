@@ -42,11 +42,11 @@ const TITULO: Record<Momento, string> = {
 function claseValor(activo: boolean, n: number): string {
   const base =
     "h-9 rounded-lg font-display font-black text-sm transition-all duration-150 active:scale-90 border ";
-  if (!activo) return base + "border-ink/15 bg-white text-ink/40 hover:bg-ink/5";
-  if (n <= 2) return base + "border-transparent bg-rpe-low text-white";
-  if (n === 3) return base + "border-transparent bg-rpe-mid text-white";
-  if (n === 4) return base + "border-transparent bg-rpe-high text-white";
-  return base + "border-transparent bg-rpe-max text-white";
+  if (!activo) return base + "border-ink/15 bg-ink/5 text-ink/40 hover:bg-ink/10";
+  if (n <= 2) return base + "border-transparent bg-rpe-low text-chalk";
+  if (n === 3) return base + "border-transparent bg-rpe-mid text-chalk";
+  if (n === 4) return base + "border-transparent bg-rpe-high text-chalk";
+  return base + "border-transparent bg-rpe-max text-chalk";
 }
 
 export default function WellnessCheckIn({ momento }: { momento: Momento }) {
@@ -125,7 +125,7 @@ export default function WellnessCheckIn({ momento }: { momento: Momento }) {
       <div className="card flex items-center justify-between gap-3">
         <div>
           <p className="font-semibold text-sm">{TITULO[momento]}</p>
-          <p className="text-sm text-grass font-medium">✓ Registrado</p>
+          <p className="text-sm text-mint font-medium">✓ Registrado</p>
         </div>
         <button
           onClick={() => setEditando(true)}

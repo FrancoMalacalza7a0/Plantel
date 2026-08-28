@@ -84,7 +84,7 @@ export default function EquipoPage() {
         <p className="text-[10px] uppercase tracking-widest text-ink/40 font-semibold mb-1">
           Código para que se unan los jugadores
         </p>
-        <p className="font-mono font-black text-3xl tracking-[0.3em] text-grass">
+        <p className="font-mono font-black text-3xl tracking-[0.3em] text-tape">
           {equipo.codigo_invitacion}
         </p>
         <p className="text-sm text-ink/60 mt-2">
