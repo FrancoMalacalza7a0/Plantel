@@ -21,16 +21,16 @@ export default async function JugadorLayout({
 
   return (
     <div className="min-h-dvh">
-      <header className="sticky top-0 z-10 bg-chalk/90 backdrop-blur border-b border-ink/10">
+      <header className="sticky top-0 z-10 bg-chalk/90 backdrop-blur border-b-2 border-tape">
         <div className="max-w-xl mx-auto px-4 h-14 flex items-center justify-between">
           <Link
             href="/jugador"
-            className="font-display font-black tracking-wide"
+            className="font-display font-black tracking-wide text-tape"
           >
             PLANTEL
           </Link>
           <nav className="flex items-center gap-4 text-sm font-semibold">
-            <Link href="/unirse" className="hover:text-grass">
+            <Link href="/unirse" className="hover:text-mint">
               Unirme a un equipo
             </Link>
             <SignOutButton />

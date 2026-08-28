@@ -22,9 +22,9 @@ export default async function PfLayout({
 
   return (
     <div className="min-h-dvh">
-      <header className="sticky top-0 z-10 bg-chalk/90 backdrop-blur border-b border-ink/10">
+      <header className="sticky top-0 z-10 bg-chalk/90 backdrop-blur border-b-2 border-tape">
         <div className="max-w-3xl mx-auto px-4 h-14 flex items-center justify-between">
-          <Link href="/pf" className="font-display font-black tracking-wide">
+          <Link href="/pf" className="font-display font-black tracking-wide text-tape">
             PLANTEL
           </Link>
           <nav className="flex items-center gap-1.5">

@@ -20,7 +20,7 @@ export default function NavLink({
       aria-current={activo ? "page" : undefined}
       className={
         activo
-          ? "rounded-lg bg-ink text-white px-3 py-1.5 text-sm font-semibold"
+          ? "rounded-lg bg-tape text-chalk px-3 py-1.5 text-sm font-semibold"
           : "rounded-lg px-3 py-1.5 text-sm font-semibold text-ink/60 hover:text-ink hover:bg-ink/5"
       }
     >

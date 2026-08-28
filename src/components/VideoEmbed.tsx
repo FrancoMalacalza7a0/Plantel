@@ -15,7 +15,7 @@ export default function VideoEmbed({ url }: { url: string }) {
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-grass font-semibold underline text-sm"
+        className="text-mint font-semibold underline text-sm"
       >
         Ver video de referencia
       </a>

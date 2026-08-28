@@ -40,24 +40,26 @@ export default function Unirse() {
         <p className="text-ink/60 mb-6">
           Pedile a tu preparador físico el código del equipo.
         </p>
-        <input
-          className="field text-center font-mono text-2xl tracking-[0.35em] uppercase"
-          value={codigo}
-          onChange={(e) => setCodigo(e.target.value.toUpperCase())}
-          maxLength={6}
-          placeholder="ABC123"
-          aria-label="Código del equipo"
-        />
-        {error && (
-          <p className="text-sm text-rpe-max font-medium mt-3">{error}</p>
-        )}
-        <button
-          onClick={unirse}
-          disabled={cargando || codigo.length < 6}
-          className="btn-primary w-full mt-4"
-        >
-          {cargando ? "Uniéndote…" : "Unirme"}
-        </button>
+        <div className="card">
+          <input
+            className="field text-center font-mono text-2xl tracking-[0.35em] uppercase"
+            value={codigo}
+            onChange={(e) => setCodigo(e.target.value.toUpperCase())}
+            maxLength={6}
+            placeholder="ABC123"
+            aria-label="Código del equipo"
+          />
+          {error && (
+            <p className="text-sm text-rpe-max font-medium mt-3">{error}</p>
+          )}
+          <button
+            onClick={unirse}
+            disabled={cargando || codigo.length < 6}
+            className="btn-primary w-full mt-4"
+          >
+            {cargando ? "Uniéndote…" : "Unirme"}
+          </button>
+        </div>
       </div>
     </main>
   );

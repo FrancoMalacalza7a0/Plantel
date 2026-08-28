@@ -84,7 +84,7 @@ export default function EquipoPage() {
         <p className="text-[10px] uppercase tracking-widest text-ink/40 font-semibold mb-1">
           Código para que se unan los jugadores
         </p>
-        <p className="font-mono font-black text-3xl tracking-[0.3em] text-grass">
+        <p className="font-mono font-black text-3xl tracking-[0.3em] text-tape">
           {equipo.codigo_invitacion}
         </p>
         <p className="text-sm text-ink/60 mt-2">
@@ -124,16 +124,14 @@ export default function EquipoPage() {
               <Link
                 key={s.id}
                 href={`/pf/equipos/${equipo.id}/sesiones/${s.id}`}
-                className="card flex items-center justify-between hover:border-grass transition-colors"
+                className="card card-link flex items-center justify-between"
               >
                 <div>
                   <p className="font-semibold">{s.titulo}</p>
                   <p className="text-sm text-ink/50">{s.fecha}</p>
                 </div>
                 {s.fecha === hoy && (
-                  <span className="text-xs font-bold uppercase tracking-wide bg-tape/20 text-ink px-2 py-1 rounded-lg">
-                    Hoy
-                  </span>
+                  <span className="badge-tape">Hoy</span>
                 )}
               </Link>
             ))}

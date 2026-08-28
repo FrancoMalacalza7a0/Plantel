@@ -22,14 +22,14 @@ export default function Recuperar() {
   return (
     <main className="min-h-dvh flex items-center justify-center px-6">
       <div className="w-full max-w-sm">
-        <p className="font-display font-bold uppercase tracking-[0.25em] text-grass text-sm mb-2">
+        <p className="font-display font-bold uppercase tracking-[0.25em] text-tape text-sm mb-2">
           Plantel
         </p>
         <h1 className="font-display font-black text-2xl mb-2">
           Recuperar contraseña
         </h1>
         {enviado ? (
-          <div className="space-y-4">
+          <div className="card space-y-4">
             <p className="text-ink/70">
               Si ese mail está registrado, te enviamos un link para crear una
               contraseña nueva. Revisá también la carpeta de spam.
@@ -42,7 +42,7 @@ export default function Recuperar() {
             </Link>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="card space-y-4">
             <p className="text-ink/60">
               Poné tu email y te mandamos un link para crear una nueva.
             </p>
@@ -65,7 +65,7 @@ export default function Recuperar() {
               {cargando ? "Enviando…" : "Enviarme el link"}
             </button>
             <p className="text-sm text-ink/60">
-              <Link href="/login" className="text-grass font-semibold">
+              <Link href="/login" className="text-mint font-semibold">
                 ← Volver a entrar
               </Link>
             </p>

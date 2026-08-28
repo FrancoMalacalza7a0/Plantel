@@ -27,7 +27,7 @@ export default async function Home() {
           10
         </span>
         <div className="relative max-w-md">
-          <p className="font-display font-700 uppercase tracking-[0.25em] text-grass text-sm mb-3">
+          <p className="font-display font-700 uppercase tracking-[0.25em] text-tape text-sm mb-3">
             Plantel
           </p>
           <h1 className="font-display font-black text-4xl leading-tight mb-4">

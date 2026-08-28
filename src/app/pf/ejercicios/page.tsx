@@ -227,7 +227,8 @@ export default function EjerciciosPage() {
       {cargando ? (
         <p className="text-ink/50">Cargando…</p>
       ) : ejercicios.length === 0 && !creando ? (
-        <div className="card text-center py-10">
+        <div className="empty-state">
+          <p className="font-display font-black text-5xl text-ink/10 mb-2">—</p>
           <p className="font-display font-bold text-lg mb-1">
             Tu biblioteca está vacía
           </p>
@@ -254,7 +255,7 @@ export default function EjerciciosPage() {
                       loading="lazy"
                     />
                     {e.imagenes_url.length > 1 && (
-                      <span className="absolute -bottom-1 -right-1 bg-ink text-white text-[10px] font-bold rounded-md px-1">
+                      <span className="absolute -bottom-1 -right-1 bg-tape text-chalk text-[10px] font-bold rounded-md px-1">
                         +{e.imagenes_url.length - 1}
                       </span>
                     )}
@@ -275,7 +276,7 @@ export default function EjerciciosPage() {
                   href={e.video_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-grass text-sm font-semibold shrink-0"
+                  className="text-mint text-sm font-semibold shrink-0"
                 >
                   Ver video
                 </a>

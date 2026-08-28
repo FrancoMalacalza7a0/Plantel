@@ -140,7 +140,7 @@ export default function SesionPfPage() {
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="font-semibold">
-                      <span className="font-display font-black text-grass mr-2">
+                      <span className="font-display font-black text-tape mr-2">
                         {i + 1}
                       </span>
                       {e.ejercicios?.nombre}
@@ -170,7 +170,7 @@ export default function SesionPfPage() {
                     href={e.ejercicios.video_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-grass text-sm font-semibold inline-block"
+                    className="text-mint text-sm font-semibold inline-block"
                   >
                     ▶ Ver video de referencia
                   </a>
