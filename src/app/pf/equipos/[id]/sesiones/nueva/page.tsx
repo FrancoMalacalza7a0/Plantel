@@ -93,7 +93,9 @@ export default function NuevaSesionPage() {
       .select("id")
       .single();
     if (e1 || !sesion) {
-      setError("No se pudo crear la sesión.");
+      setError(
+        `No se pudo crear la sesión${e1 ? `: ${e1.message}` : "."}`
+      );
       setGuardando(false);
       return;
     }
@@ -114,7 +116,9 @@ export default function NuevaSesionPage() {
         .from("sesion_ejercicios")
         .insert(filas);
       if (e2) {
-        setError("La sesión se creó pero falló la carga de ejercicios.");
+        setError(
+          `La sesión se creó pero falló la carga de ejercicios: ${e2.message}`
+        );
         setGuardando(false);
         return;
       }
