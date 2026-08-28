@@ -12,6 +12,9 @@ alter table public.wellness
   drop constraint if exists wellness_jugador_id_fecha_key;
 
 alter table public.wellness
+  drop constraint if exists wellness_jugador_fecha_momento_key;
+
+alter table public.wellness
   add constraint wellness_jugador_fecha_momento_key
     unique (jugador_id, fecha, momento);
 
