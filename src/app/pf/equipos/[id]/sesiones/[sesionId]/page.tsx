@@ -168,8 +168,6 @@ export default function SesionPfPage() {
                 {e.ejercicios?.video_url && (
                   <a
                     href={e.ejercicios.video_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="text-mint text-sm font-semibold inline-block"
                   >
                     ▶ Ver video de referencia

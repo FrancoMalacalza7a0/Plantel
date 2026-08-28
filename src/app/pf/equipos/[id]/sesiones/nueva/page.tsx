@@ -328,14 +328,10 @@ export default function NuevaSesionPage() {
             {biblioteca.length === 0 ? (
               <p className="text-sm text-ink/60">
                 Tu biblioteca está vacía.{" "}
-                <Link
-                  href="/pf/ejercicios"
-                  target="_blank"
-                  className="text-mint font-semibold"
-                >
-                  Cargá ejercicios en otra pestaña
+                <Link href="/pf/ejercicios" className="text-mint font-semibold">
+                  Cargá ejercicios
                 </Link>{" "}
-                y volvé: van a aparecer al recargar.
+                y volvé a armar la sesión.
               </p>
             ) : (
               <>

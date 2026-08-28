@@ -55,6 +55,19 @@ body {
   @apply w-full rounded-xl border border-ink/20 bg-ink/5 px-3.5 py-2.5 text-ink placeholder:text-ink/35 transition-all duration-150 focus:border-tape focus:outline-none focus:ring-4 focus:ring-tape/20;
 }
 
+/* El navegador dibuja la lista desplegable de <select> como una ventana
+   nativa aparte: sin esto ignora el tema oscuro de la página y la
+   muestra en blanco. */
+select.field {
+  color-scheme: dark;
+  background-color: rgba(244, 246, 243, 0.08);
+}
+
+select.field option {
+  background-color: #123328;
+  color: #f4f6f3;
+}
+
 .label {
   @apply block text-sm font-semibold text-ink/70 mb-1;
 }

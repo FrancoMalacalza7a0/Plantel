@@ -274,8 +274,6 @@ export default function EjerciciosPage() {
               {e.video_url && (
                 <a
                   href={e.video_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="text-mint text-sm font-semibold shrink-0"
                 >
                   Ver video
