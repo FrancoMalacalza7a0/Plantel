@@ -73,6 +73,9 @@ export default function EquipoPage() {
           >
             Nueva sesión
           </Link>
+          <Link href={`/pf/equipos/${equipo.id}/panel`} className="btn-ghost">
+            Panel y KPIs
+          </Link>
           <ExportarExcel equipoId={equipo.id} nombreEquipo={equipo.nombre} />
         </div>
       </div>

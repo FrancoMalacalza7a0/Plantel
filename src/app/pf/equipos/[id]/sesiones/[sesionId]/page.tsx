@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import FotosEjercicio from "@/components/FotosEjercicio";
 import { BLOQUES, type Bloque } from "@/lib/types";
 
 const NOMBRE_BLOQUE = Object.fromEntries(
@@ -19,7 +20,11 @@ interface SesionEj {
   carga: string | null;
   duracion_min: number | null;
   notas: string | null;
-  ejercicios: { nombre: string; video_url: string | null } | null;
+  ejercicios: {
+    nombre: string;
+    video_url: string | null;
+    imagenes_url: string[] | null;
+  } | null;
 }
 
 interface Respuesta {
@@ -61,7 +66,7 @@ export default function SesionPfPage() {
       supabase
         .from("sesion_ejercicios")
         .select(
-          "id, bloque, orden, series, repeticiones, carga, duracion_min, notas, ejercicios(nombre, video_url)"
+          "id, bloque, orden, series, repeticiones, carga, duracion_min, notas, ejercicios(nombre, video_url, imagenes_url)"
         )
         .eq("sesion_id", sesionId)
         .order("orden"),
@@ -129,8 +134,9 @@ export default function SesionPfPage() {
             );
             const hechos = resp.filter((r) => r.completado).length;
             const comentarios = resp.filter((r) => r.comentario);
+            const imgs = e.ejercicios?.imagenes_url ?? [];
             return (
-              <div key={e.id} className="card">
+              <div key={e.id} className="card space-y-3">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="font-semibold">
@@ -153,8 +159,25 @@ export default function SesionPfPage() {
                     {hechos} ✓
                   </span>
                 </div>
+
+                <FotosEjercicio
+                  imagenes={imgs}
+                  nombre={e.ejercicios?.nombre ?? "ejercicio"}
+                />
+
+                {e.ejercicios?.video_url && (
+                  <a
+                    href={e.ejercicios.video_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-grass text-sm font-semibold inline-block"
+                  >
+                    ▶ Ver video de referencia
+                  </a>
+                )}
+
                 {comentarios.length > 0 && (
-                  <div className="mt-2 border-t border-ink/5 pt-2 space-y-1">
+                  <div className="border-t border-ink/5 pt-2 space-y-1">
                     {comentarios.map((c, idx) => (
                       <p key={idx} className="text-sm text-ink/60">
                         “{c.comentario}”

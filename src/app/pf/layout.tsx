@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import SignOutButton from "@/components/SignOutButton";
+import NavLink from "@/components/NavLink";
 
 export default async function PfLayout({
   children,
@@ -26,14 +27,14 @@ export default async function PfLayout({
           <Link href="/pf" className="font-display font-black tracking-wide">
             PLANTEL
           </Link>
-          <nav className="flex items-center gap-4 text-sm font-semibold">
-            <Link href="/pf" className="hover:text-grass">
+          <nav className="flex items-center gap-1.5">
+            <NavLink href="/pf" match={["/pf/equipos"]}>
               Equipos
-            </Link>
-            <Link href="/pf/ejercicios" className="hover:text-grass">
-              Ejercicios
-            </Link>
-            <SignOutButton />
+            </NavLink>
+            <NavLink href="/pf/ejercicios">Ejercicios</NavLink>
+            <span className="ml-2">
+              <SignOutButton />
+            </span>
           </nav>
         </div>
       </header>

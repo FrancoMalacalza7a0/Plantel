@@ -91,24 +91,47 @@ src/app/
   page.tsx               ← landing (redirige según rol)
   login/ registro/       ← auth con rol PF o jugador
   unirse/                ← el jugador entra con el código del equipo
-  pf/                    ← lado PF: equipos, biblioteca, sesiones, resultados
-  jugador/               ← lado jugador: sesión de HOY + RPE
-src/components/          ← RpePicker (fichas 0-10), VideoEmbed, SignOut
+  pf/                    ← lado PF: equipos, biblioteca, sesiones, panel/KPIs
+  jugador/               ← lado jugador: sesión de HOY + wellness + RPE
+  recuperar/ actualizar-clave/ ← reset de contraseña
+src/components/          ← RpePicker, WellnessCheckIn, FotosEjercicio,
+                           VideoEmbed, ExportarExcel, NavLink, SignOut
 ```
+
+## Wellness (mañana y noche) + Panel del PF
+
+- El jugador carga wellness **dos veces por día** desde `/jugador`: a la
+  mañana las 5 preguntas de Hooper (sueño, fatiga, dolor, estrés, ánimo),
+  a la noche solo fatiga, dolor y ánimo. Requiere correr
+  `supabase/migracion-wellness-momento.sql` una vez (agrega la columna
+  `momento` a `wellness`).
+- El PF ve un **panel por equipo** en «Panel y KPIs» (dentro de cada
+  equipo): semáforo de wellness del plantel, semáforo de sesiones pasadas
+  y semáforo de ejercicios de la biblioteca — combinando adherencia
+  («Hecho»), quejas de dolor/molestia detectadas en los comentarios, y
+  el desvío entre el RPE esperado (nuevo campo al armar una sesión) y el
+  RPE real reportado. Es una guía automática, no un diagnóstico: con
+  menos de 3 respuestas registradas se muestra "Pocos datos" en gris en
+  vez de forzar un color.
 
 ## Qué sigue (roadmap corto)
 
-1. **Dashboard de carga**: sRPE semanal por jugador, monotonía y strain,
-   tendencia vs. baseline individual (los datos ya se están guardando).
-2. **Wellness diario** (la tabla ya existe): sueño, fatiga, dolor,
-   estrés, ánimo 1-5 antes de entrenar, con semáforo para el PF.
-3. **Export a Excel** de cargas y wellness (los PF viven en Excel).
-4. **Push notifications** (recordatorio "cargá tu RPE"): Web Push con
-   VAPID; en iPhone requiere que el jugador agregue la app a la pantalla
-   de inicio.
-5. **Consentimiento informado** en el registro del jugador (texto simple:
-   qué se guarda, para qué, quién lo ve) — necesario antes de un piloto
-   real por tratarse de datos de salud.
+1. **Consentimiento informado** en el registro del jugador (texto simple:
+   qué se guarda, para qué, quién lo ve) — con wellness dos veces al día
+   sumado al RPE, esto es aún más urgente antes de cualquier piloto real:
+   se está pidiendo datos de sueño, dolor y estado de ánimo a diario.
+2. **Dashboard de tendencia individual**: sRPE semanal por jugador,
+   monotonía y strain vs. su propia baseline (hoy el panel mira el
+   equipo/las sesiones, no la evolución de cada jugador en el tiempo).
+3. **Export a Excel** de wellness (hoy `ExportarExcel` ya incluye una
+   hoja de wellness, falta sumar el detalle de mañana/noche por separado).
+4. **Push notifications** (recordatorio "cargá tu wellness / tu RPE"):
+   Web Push con VAPID; en iPhone requiere que el jugador agregue la app a
+   la pantalla de inicio.
+5. **Rediseño estético**: esta ronda mantiene la paleta y tipografías
+   actuales (ver «Notas de diseño») y les sube el nivel de detalle en las
+   pantallas nuevas; un pase visual del resto de la app (landing, formularios)
+   queda pendiente si lo piden.
 
 ## Notas de diseño
 
